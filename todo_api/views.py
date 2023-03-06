@@ -82,7 +82,6 @@ class TodoDetailApiView(APIView):
             "user": request.user.id,
         }
         serializer = TodoSerializer(instance=todo_instance, data=data, partial=True)
-        print(serializer.is_valid(), "=-=-=-=-=-=-=-=-=-=-=-=-=-")
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
