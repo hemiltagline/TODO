@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from todo_api import urls as todo_urls
-from rest_framework_swagger.views import get_swagger_view
 from django.contrib import admin
 from django.urls import include
 from django.urls import re_path
@@ -25,6 +24,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from users import urls as users
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -57,4 +58,6 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("todos/", include(todo_urls)),
     path("", include(users)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
