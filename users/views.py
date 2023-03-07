@@ -5,7 +5,6 @@ from users.models import User
 from users.serializers import UserSerializer
 from .models import Profile
 from .serializers import ProfileSerializer
-from django.shortcuts import get_object_or_404
 from .models import Profile
 from .serializers import ProfileSerializer
 
