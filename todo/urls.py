@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from todo_api import urls as todo_urls
-from rest_framework_swagger.views import get_swagger_view
 from django.contrib import admin
 from django.urls import include
 from django.urls import re_path
