@@ -12,6 +12,11 @@ from .models import Profile
 from .serializers import ProfileSerializer
 
 
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
 @api_view(["GET", "POST"])
 def user_list(request):
     """
@@ -58,7 +63,6 @@ def user_detail(request, pk):
 
 @api_view(["GET", "POST"])
 def create_profile(request):
-    print(request.method, "=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-==-")
     if request.method == "GET":
         profiles = Profile.objects.all()
         if profiles.exists():

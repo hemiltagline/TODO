@@ -4,6 +4,11 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Todo
 from .serializers import TodoSerializer
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+permission_classes = (IsAuthenticated,)
+authentication_classes = (TokenAuthentication,)
 
 
 class TodoListApiView(APIView):
@@ -55,6 +60,7 @@ class TodoDetailApiView(APIView):
         """
         Retrieves the Todo with given todo_id
         """
+        print(args, kwargs, "=-=-=-=-=-=-=-=-=-=-=-=-=-=")
         todo_instance = self.get_object(todo_id, request.user.id)
         if not todo_instance:
             return Response(
